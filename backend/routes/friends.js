@@ -1,10 +1,7 @@
 const express = require('express')
-const lastfmAPI = require('lastfmapi')
 const router = express.Router()
-const lastfm = new lastfmAPI({
-    api_key: '42d170c6dcf4165872eaa48f7513b45d',
-    secret: "6dbd780e0f7e487852b79cfe9ed3198c"
-})
+const lastfm = require('../lastfm')
+
 
 router.get('/', (req,res) => {
    const username = req.query.username
@@ -13,8 +10,8 @@ router.get('/', (req,res) => {
             console.error(err)
             res.status(500).send("error getting user friends")
         }else{
-            console.log("data ",data)
-            const friends = data.friends?.user.map(friend => friend.name)
+            console.log("data ",data.user)
+            const friends = data?.user?.map(({ name, url }) => ({ name, url }))
             res.send(friends)
         }
    })
