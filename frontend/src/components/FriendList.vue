@@ -5,7 +5,6 @@
         <tr>
           <th>Image</th>
           <th>Name</th>
-          <th>Play Count</th>
           <th>Subscriber</th>
           <th>Type</th>
           <th>URL</th>
@@ -19,7 +18,6 @@
              height="50">
           </td>
           <td>{{ friend.name }}</td>
-          <td>{{ friend.playcount }}</td>
           <td>{{ friend.subscriber }}</td>
           <td>{{ friend.type }}</td>
           <td>{{ friend.url }}</td>
@@ -28,6 +26,38 @@
     </table>
   </div>
 </template>
+
+<style scoped>
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f8f8f8;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.table img {
+  display: block;
+  max-width: 100%;
+}
+</style>
 
 <script lang="ts">
 import {
@@ -62,14 +92,6 @@ export default defineComponent({
 
   },
   setup() {
-    // const { data, error } = useFetch('http://localhost:9002/friends?username=ismailghedamsi');
-    // const myReactiveData = reactive(data);
-    // console.log('data', myReactiveData.value);
-    // return {
-    //   followers: myReactiveData.value?.followers || [],
-    //   error: error.value,
-    // };
-
     const friends = ref<Friend[]>([]);
 
     const fetchFriends = async () => {
