@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import ArtistComponent from '../components/ArtistCommon.vue';
 import FriendListView from '../views/FriendListView.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -7,6 +8,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: HomeView,
+  },
+  {
+    path: '/artist_common/:friendName',
+    name: 'artist_common',
+    component: ArtistComponent,
   },
   {
     path: '/friendList',

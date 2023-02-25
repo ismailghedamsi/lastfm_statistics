@@ -5,9 +5,8 @@
         <tr>
           <th>Image</th>
           <th>Name</th>
-          <th>Subscriber</th>
-          <th>Type</th>
           <th>URL</th>
+          <th>Artists in common</th>
         </tr>
       </thead>
       <tbody>
@@ -18,9 +17,10 @@
              height="50">
           </td>
           <td>{{ friend.name }}</td>
-          <td>{{ friend.subscriber }}</td>
-          <td>{{ friend.type }}</td>
           <td>{{ friend.url }}</td>
+          <td>
+            <button @click="goToArtistCommon(friend.name)">View</button>
+          </td> <!-- New column cell -->
         </tr>
       </tbody>
     </table>
@@ -90,6 +90,16 @@ export default defineComponent({
   name: 'FriendList',
   components: {
 
+  },
+  methods: {
+    goToArtistCommon(friendName : string) {
+      this.$router.push({
+        name: 'artist_common',
+        params: {
+          friendName,
+        },
+      });
+    },
   },
   setup() {
     const friends = ref<Friend[]>([]);
